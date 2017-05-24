@@ -13695,9 +13695,10 @@ Sc8YY0zA+H9g/I+NEBqu+QAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-This model suffers from both high variance and high bias. At max_depth=1 there is high bias and when max_depth=10 there is high variance. The visual clues that show high bias are the lines that overlay each other, and the opposite is true for high variance. 
-At max_depth=1 this model suffers from high bias
-At max_depth=10 this model suffers from high variance</p>
+At max_depth=1 there is high bias and when max_depth=10 there is high variance. The visual clues that show high bias are the lines that overlay each other, and the opposite is true for high variance. 
+To be more specific:
+At max_depth=1 this model suffers from high bias, due to overlapping of training/validation score but overall low score, a sign of high bias is when the validation score or testing set essentially mimics the training set but the score is low (low r^2)</p>
+<p>At max_depth=10 this model suffers from high variance, training and validation score are separating compared to max_depth=4, validation score is dipping, highest score looks to be at 0.8(max_depth=4) but is now around .65(max_depth=10), the testing score is higher than validation score</p>
 
 </div>
 </div>
