@@ -13152,7 +13152,8 @@ test_{network} = bottleneck_features['test']</code></pre>
 </code></pre>
 <p><strong>Question 5:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  Describe why you think the architecture is suitable for the current problem.</p>
 <p><strong>Answer:</strong></p>
-<p>In this CNN we used Tranfer learning. We had a large dataset with similar data so we were able to feed this into our dense layer.  Bottleneck features of ResNet50 were used as the pretrained CNN architecture. After connecting with the dense layer the features were fed into GlobalAveragePooling layers to flatten the 3D input into a vecotr. We then fed this into another dense layer to give us the predictions based on the 133 dog classifications.</p>
+<p>In this CNN we used Tranfer learning. We had a large dataset with similar data so we were able to feed this into our dense layer.  Bottleneck features of ResNet50 were used as the pretrained CNN architecture. After connecting with the dense layer the features were fed into GlobalAveragePooling layers to flatten the 3D input into a vector. We then fed this into another dense layer to give us the predictions based on the 133 dog classifications.</p>
+<p>I believe this architecture worked well (both relatively quicly and accurately) because we were able to use a pretrained network only pass in our images for classification. If we had to train the whole dataset anew with the accuracy may be less because we would have relatively small dataset for this task. The pretrained attributes let us use this previous work to our advantage.</p>
 
 </div>
 </div>
