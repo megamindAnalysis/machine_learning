@@ -2,11 +2,11 @@ import numpy as np
 from physics_sim import PhysicsSim
 
 class Task():
-    def __init__(self, init_position=None, init_velocity=None, 
-        init_angle_velocity=None, runtime=5., target_position=None):
+    def __init__(self, init_pose=None, init_velocities=None, 
+        init_angle_velocities=None, runtime=5., target_pos=None):
         
         # Simulation
-        self.sim = PhysicsSim(init_position, init_velocity, init_angle_velocity, runtime) 
+        self.sim = PhysicsSim(init_pose, init_velocities, init_angle_velocities, runtime) 
         self.action_repeat = 3
 
         self.state_size = self.action_repeat * 6
@@ -14,24 +14,23 @@ class Task():
         self.action_high = 900
         self.action_size = 4
 
-        self.target_position = target_position if target_position is not None else np.array([0., 0., 10.]) 
+        self.target_pos = target_pos if target_pos is not None else np.array([0., 0., 10.]) 
 
     def get_reward(self):
-        ''' Reward'''
-        reward = 1. - .1*(abs(self.sim.position[:3] - self.target_position)).sum()
+        reward = 1. - .1*(abs(self.sim.pose[:3] - self.target_pos)).sum()
         return reward 
 
     def step(self, rotor_speeds):
         reward = 0
-        positions = []
+        pose_all = []
         for _ in range(self.action_repeat):
-            done = self.sim.next_timestep(rotor_speeds) # update the sim pose and velocities
+            done = self.sim.next_timestep(rotor_speeds)
             reward += self.get_reward() 
-            positions.append(self.sim.position)
-        next_state = np.concatenate(positions)
+            pose_all.append(self.sim.pose)
+        next_state = np.concatenate(pose_all)
         return next_state, reward, done
 
     def reset(self):
         self.sim.reset()
-        state = np.concatenate([self.sim.position] * self.action_repeat) 
+        state = np.concatenate([self.sim.pose] * self.action_repeat) 
         return state
