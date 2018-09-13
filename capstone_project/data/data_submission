@@ -1,4 +1,5 @@
-Data too large for upload and can be obtained at the below link
+Data too large for upload and can be obtained from the below VPS
+Use the below command in a terminal to obtain file
 
+wget http://45.33.2.216/data/Tuesday-WorkingHours.pcap_ISCX.csv
 
-https://megamindsecurity-my.sharepoint.com/:x:/p/megamind/EaCV9GDGxWRCvzC9iOjfE48BJ097URB636xBb9MukomQRQ?e=PwA71U
